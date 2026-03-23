@@ -15,7 +15,7 @@ from .forms import ProfileForm, ProjectForm, SkillForm, AchievementForm, SkillCa
 # ─── Public Views ────────────────────────────────────────────────────────────
 
 def home_view(request):
-    profile = Profile.objects.first()
+    profile = Profile.objects.first() or None
     featured_projects = Project.objects.order_by('-created_date')[:3]
     categories = SkillCategory.objects.prefetch_related('skills').all()
     achievements = Achievement.objects.all()[:6]
